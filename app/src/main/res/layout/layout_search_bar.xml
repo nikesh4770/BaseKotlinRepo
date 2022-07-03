@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="searchTerm"
+            type="String" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/bg_default_search_bar"
+        android:minHeight="@dimen/dimen_56dp">
+
+        <EditText
+            android:id="@+id/editTxtSearch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dimen_20dp"
+            android:autofillHints="name"
+            android:drawablePadding="@dimen/dimen_10dp"
+            android:background="@android:color/transparent"
+            android:drawableStart="@drawable/ic_search"
+            android:hint="@string/hint_search_recipe"
+            android:imeActionLabel="@string/search_go"
+            android:inputType="text"
+            android:minHeight="@dimen/dimen_50dp"
+            android:text="@{searchTerm}"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/img_clear_search"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/img_clear_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dimen_10dp"
+            android:contentDescription="@string/content_desc_clear_search"
+            android:minWidth="@dimen/dimen_40dp"
+            android:minHeight="@dimen/dimen_40dp"
+            android:padding="@dimen/dimen_10dp"
+            android:src="@drawable/ic_cancel"
+            app:layout_constraintBottom_toBottomOf="@id/editTxtSearch"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/editTxtSearch"
+            app:layout_constraintTop_toTopOf="@id/editTxtSearch" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

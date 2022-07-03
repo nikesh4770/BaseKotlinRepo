@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Recipe</string>
+    <!-- Search Bar Layout -->
+    <string name="search_go">Go</string>
+    <string name="hint_search_recipe">Search Recipe</string>
+    <string name="content_desc_clear_search">Clear Search</string>
+
+
+</resources>
