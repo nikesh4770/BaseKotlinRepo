@@ -13,7 +13,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val loginClick = view.findViewById<TextView>(R.id.loginClick)
+        val loginClick = view.findViewById<TextView>(R.id.txtLoginButton)
         loginClick.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
         }

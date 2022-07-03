@@ -5,5 +5,17 @@
     <string name="hint_search_recipe">Search Recipe</string>
     <string name="content_desc_clear_search">Clear Search</string>
 
+    <!-- Login Screen   -->
+    <string name="login_welcome">Welcome!</string>
+    <string name="login_hint_email">Email or phone number</string>
+    <string name="login_hint_password">Password</string>
+    <string name="login_forgot_password">Forgot Password?</string>
+    <string name="login_continue_with_option">Or continue with</string>
+    <string name="login_google">Google</string>
+    <string name="login_button">Login</string>
+    <string name="login_sign_up">Don\'t have an account? Sign Up</string>
+    <string name="content_desc_login_clear_email">Clear Email or phone number Button</string>
+    <string name="content_desc_login_clear_password">Clear password button</string>
+
 
 </resources>

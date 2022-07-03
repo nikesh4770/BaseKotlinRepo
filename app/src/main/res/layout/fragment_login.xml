@@ -1,9 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:padding="@dimen/dimen_25dp"
     android:layout_height="match_parent"
     tools:context=".ui.fragments.login.LoginFragment">
 
+    <TextView
+        android:id="@+id/txtWelcomeLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/login_welcome"
+        app:layout_constraintBottom_toTopOf="@+id/edtLoginUserName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</FrameLayout>
+    <EditText
+        android:id="@+id/edtLoginUserName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/login_hint_email"
+        android:importantForAutofill="no"
+        android:inputType="textEmailAddress"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintBottom_toTopOf="@+id/edtLoginPassword"
+        app:layout_constraintEnd_toStartOf="@id/imgLoginClearEmail"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtWelcomeLabel" />
+
+    <ImageView
+        android:id="@+id/imgLoginClearEmail"
+        android:layout_width="@dimen/dimen_28dp"
+        android:layout_height="@dimen/dimen_28dp"
+        android:contentDescription="@string/content_desc_login_clear_email"
+        android:src="@drawable/ic_cancel"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/edtLoginUserName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/edtLoginUserName"
+        app:layout_constraintTop_toTopOf="@id/edtLoginUserName"
+        tools:visibility="visible" />
+
+    <EditText
+        android:id="@+id/edtLoginPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/login_hint_password"
+        android:importantForAutofill="no"
+        android:inputType="textPassword"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintBottom_toTopOf="@+id/txtForgotPasswordButton"
+        app:layout_constraintEnd_toStartOf="@id/imgLoginClearPassword"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtLoginUserName" />
+
+    <ImageView
+        android:id="@+id/imgLoginClearPassword"
+        android:layout_width="@dimen/dimen_28dp"
+        android:layout_height="@dimen/dimen_28dp"
+        android:contentDescription="@string/content_desc_login_clear_password"
+        android:src="@drawable/ic_cancel"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/edtLoginPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/edtLoginPassword"
+        app:layout_constraintTop_toTopOf="@id/edtLoginPassword"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/txtForgotPasswordButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/login_forgot_password"
+        app:layout_constraintBottom_toTopOf="@+id/txtLoginButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtLoginPassword" />
+
+    <TextView
+        android:id="@+id/txtLoginButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/login_button"
+        app:layout_constraintBottom_toTopOf="@+id/txtLoginContinueLabel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtForgotPasswordButton" />
+
+    <TextView
+        android:id="@+id/txtLoginContinueLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/login_continue_with_option"
+        app:layout_constraintBottom_toTopOf="@+id/txtGoogleLoginButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtLoginButton" />
+
+    <TextView
+        android:id="@+id/txtGoogleLoginButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/login_google"
+        app:layout_constraintBottom_toTopOf="@+id/txtSignupButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtLoginContinueLabel" />
+
+    <TextView
+        android:id="@+id/txtSignupButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/login_sign_up"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtGoogleLoginButton" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
