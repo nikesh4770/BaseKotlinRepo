@@ -1,12 +1,14 @@
 package com.app.recipe.ui.fragments.home
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.app.recipe.MainCoroutineRule
 import com.app.recipe.getOrAwaitValueTest
 import com.app.recipe.other.Status
 import com.app.recipe.repositories.FakeRecipeRepository
 import com.google.common.truth.Truth.assertThat
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.*
+import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -17,16 +19,21 @@ class HomeViewModelTest {
     @get:Rule
     var instantTaskExecutor = InstantTaskExecutorRule()
 
-    @get:Rule
-    var mainCoroutineRule = MainCoroutineRule()
+//    @get:Rule
+//    var mainCoroutineRule = MainCoroutineRule()
 
     private lateinit var homeViewModel: HomeViewModel
 
     @Before
     fun setUp() {
+        Dispatchers.setMain(StandardTestDispatcher())
         homeViewModel = HomeViewModel(FakeRecipeRepository())
     }
 
+    @After
+    fun tearDown(){
+         Dispatchers.resetMain()
+    }
 
 //    @Test
 //    fun `complexRecipeSearch_returnsErrorResponse`() {
@@ -35,10 +42,13 @@ class HomeViewModelTest {
 //    }
 
     @Test
-    fun `complexRecipeSearch_returnsResponse`() {
+    fun complexRecipeSearch_returnsResponse() = runTest {
         homeViewModel.performComplexRecipeSearch("pasta")
-        val response = homeViewModel.complexRecipeResponse.getOrAwaitValueTest()
+        var response = homeViewModel.complexRecipeResponse.getOrAwaitValueTest()
+        assertThat(response.status).isEqualTo(Status.LOADING)
 
+        advanceTimeBy(10L)
+        response = homeViewModel.complexRecipeResponse.getOrAwaitValueTest()
         assertThat(response.status).isEqualTo(Status.SUCCESS)
     }
 }

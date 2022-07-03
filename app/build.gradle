@@ -7,13 +7,13 @@ plugins {
 }
 
 // Creates a variable called keystorePropertiesFile, and initializes it to the
-// keystore.properties file.
+// keys.properties file.
 def keysPropertiesFile = rootProject.file("keys.properties")
 
-// Initializes a new Properties() object called keystoreProperties.
+// Initializes a new Properties() object called keysPropertiesFile.
 def keyProperties = new Properties()
 
-// Loads the keystore.properties file into the keystoreProperties object.
+// Loads the keys.properties file into the keyProperties object.
 keyProperties.load(new FileInputStream(keysPropertiesFile))
 
 android {
@@ -118,8 +118,8 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
     //Coroutines
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1'
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.1'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.3'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.3'
 
     // Kotlin
     implementation "androidx.navigation:navigation-fragment-ktx:2.4.2"
@@ -154,8 +154,8 @@ dependencies {
     //Hilt testing
     androidTestImplementation 'com.google.dagger:hilt-android-testing:2.37'
     kaptAndroidTest 'com.google.dagger:hilt-android-compiler:2.37'
-    kapt "com.google.dagger:hilt-compiler:2.37"
-    implementation("com.google.dagger:hilt-android:2.37") //hilt dependency
+    kapt "com.google.dagger:hilt-compiler:2.38.1"
+    implementation("com.google.dagger:hilt-android:2.38.1") //hilt dependency
 
     //Mockito
     androidTestImplementation 'org.mockito:mockito-android:4.6.1'
