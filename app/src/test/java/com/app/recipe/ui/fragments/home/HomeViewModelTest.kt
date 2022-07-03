@@ -42,7 +42,7 @@ class HomeViewModelTest {
 //    }
 
     @Test
-    fun `complexRecipeSearch_returnsResponse`() = runTest {
+    fun complexRecipeSearch_returnsResponse() = runTest {
         homeViewModel.performComplexRecipeSearch("pasta")
         var response = homeViewModel.complexRecipeResponse.getOrAwaitValueTest()
         assertThat(response.status).isEqualTo(Status.LOADING)
