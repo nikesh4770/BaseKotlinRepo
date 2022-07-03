@@ -6,6 +6,16 @@ plugins {
     id 'dagger.hilt.android.plugin'
 }
 
+// Creates a variable called keystorePropertiesFile, and initializes it to the
+// keystore.properties file.
+def keysPropertiesFile = rootProject.file("keys.properties")
+
+// Initializes a new Properties() object called keystoreProperties.
+def keyProperties = new Properties()
+
+// Loads the keystore.properties file into the keystoreProperties object.
+keyProperties.load(new FileInputStream(keysPropertiesFile))
+
 android {
     compileSdk 31
 
@@ -18,11 +28,14 @@ android {
 
         testInstrumentationRunner "com.app.recipe.HiltTestRunner"
 
-        buildConfigField("String", "API_KEY", API_KEY_QA)
-
+        buildConfigField("String", "API_KEY", keyProperties["API_KEY"])
     }
 
-    sourceSets{
+    buildFeatures {
+        dataBinding = true
+    }
+
+    sourceSets {
         main { java.srcDirs = ['src/main/java'] }
         test { java.srcDirs = ['src/test/java'] }
         androidTest.setRoot("src/androidTest")
@@ -31,22 +44,22 @@ android {
 
     signingConfigs {
         qa {
-            keyAlias 'nikesh'
-            keyPassword 'nikesh'
-            storeFile file('key/recipe.jks')
-            storePassword 'nikesh'
+            keyAlias keyProperties["keyAlias"]
+            keyPassword keyProperties["keyPassword"]
+            storeFile file(keyProperties.getProperty("storeFile", "key/recipe.jks"))
+            storePassword keyProperties["storePassword"]
         }
         beta {
-            keyAlias 'nikesh'
-            keyPassword 'nikesh'
-            storeFile file('key/recipe.jks')
-            storePassword 'nikesh'
+            keyAlias keyProperties["keyAlias"]
+            keyPassword keyProperties["keyPassword"]
+            storeFile file(keyProperties.getProperty("storeFile", "key/recipe.jks"))
+            storePassword keyProperties["storePassword"]
         }
         prod {
-            keyAlias 'nikesh'
-            keyPassword 'nikesh'
-            storeFile file('key/recipe.jks')
-            storePassword 'nikesh'
+            keyAlias keyProperties["keyAlias"]
+            keyPassword keyProperties["keyPassword"]
+            storeFile file(keyProperties.getProperty("storeFile", "key/recipe.jks"))
+            storePassword keyProperties["storePassword"]
         }
     }
 
@@ -58,17 +71,13 @@ android {
  applicationIdSuffix ".paid"}newDimension {dimension "androidLatest"
  minSdk 31}}*/
 
-    buildFeatures {
-        dataBinding = true
-    }
-
     buildTypes {
 
         qa {
             debuggable true
             minifyEnabled true
             applicationIdSuffix ".qa"
-            buildConfigField("String", "API_KEY", API_KEY_QA)
+            buildConfigField("String", "API_KEY", keyProperties.getProperty("API_KEY"))
             signingConfig signingConfigs.qa
         }
 
@@ -76,15 +85,15 @@ android {
             debuggable true
             minifyEnabled true
             applicationIdSuffix ".beta"
-//            buildConfigField("String", "API_KEY", API_KEY_BETA)
+            buildConfigField("String", "API_KEY", keyProperties.getProperty("API_KEY"))
             signingConfig signingConfigs.beta
 
         }
 
         release {
-//            buildConfigField("String", "API_KEY", API_KEY_PROD)
             signingConfig signingConfigs.prod
             minifyEnabled true
+            buildConfigField("String", "API_KEY", keyProperties.getProperty("API_KEY"))
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -93,7 +102,7 @@ android {
         targetCompatibility JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = '11'
+        jvmTarget = JavaVersion.VERSION_11.toString()
     }
 }
 
@@ -162,10 +171,6 @@ dependencies {
     testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.3'
 
 }
-
-
-
-
 
 
 /*
